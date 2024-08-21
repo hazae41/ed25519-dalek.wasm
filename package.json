@@ -21,14 +21,14 @@
     "build:node": "rimraf dist && rollup -c && rsync -a ./src/wasm ./dist --exclude=target --exclude=pkg",
     "build": "npm run build:wasm && npm run build:node",
     "test": "node ./dist/test/src/node/index.test.mjs",
-    "prepare": "npm run build:node"
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@hazae41/deimos": "^1.0.6",
     "@hazae41/phobos": "^1.0.10",
     "@hazae41/rimraf": "^1.0.1",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/node": "^22.4.2",
+    "@types/node": "^22.5.0",
     "rollup": "^4.21.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-node-externals": "^7.1.3",

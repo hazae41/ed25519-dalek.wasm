@@ -17,4 +17,4 @@ RUN npm config set cache /tmp --global
 RUN chmod -R 777 /usr/local/cargo
 RUN chmod -R 777 /root
 
-CMD npm ci && npm run build
+CMD npm ci
