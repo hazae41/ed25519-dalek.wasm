@@ -1,0 +1,23 @@
+[package]
+name = "ed25519-dalek_wasm"
+version = "1.0.0"
+authors = ["hazae41 <hazae41@proton.me>"]
+edition = "2021"
+
+description = "WebAssembly port of Ed25519 signatures and X25519 key exchange"
+repository = "https://github.com/hazae41/berith-wasm"
+license = "Unlicense"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+debug = false
+opt-level = 3
+
+[dependencies]
+wasm-bindgen = { version = "0.2.93", default-features = false }
+ed25519-dalek = { version = "2.1.1", default-features = false, features = ["rand_core"] }
+rand_core = { version = "0.6.4", default-features = false, features = ["getrandom"] }
+getrandom = { version = "0.2.15", default-features = false, features = ["js"] }
