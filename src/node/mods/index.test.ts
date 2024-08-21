@@ -1,5 +1,5 @@
 import { assert, test } from "@hazae41/phobos";
-import { Ed25519Signature, Ed25519SigningKey, Ed25519VerifyingKey, initBundledSync, Memory } from "./index.js";
+import { Ed25519Signature, Ed25519SigningKey, Ed25519VerifyingKey, initBundled, Memory } from "./index.js";
 
 function equals(a: Uint8Array, b: Uint8Array) {
   return Buffer.from(a).equals(Buffer.from(b))
@@ -27,7 +27,7 @@ function assertEd25519Signature(signature: Ed25519Signature) {
 }
 
 test("Ed25519", async () => {
-  initBundledSync()
+  await initBundled()
 
   const hello = new TextEncoder().encode("hello world")
   const mhello = new Memory(hello)

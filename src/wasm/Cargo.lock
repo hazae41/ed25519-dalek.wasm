@@ -101,7 +101,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "ed25519-dalek_wasm"
+name = "ed25519-dalek-wasm"
 version = "1.0.0"
 dependencies = [
  "ed25519-dalek",
