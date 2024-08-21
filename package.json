@@ -7,9 +7,9 @@
   "repository": "github:hazae41/ed25519-dalek.wasm",
   "author": "hazae41",
   "license": "Unlicense",
-  "main": "./dist/cjs/src/node/index.cjs",
-  "module": "./dist/esm/src/node/index.mjs",
-  "types": "./dist/types/src/node/index.d.ts",
+  "main": "./dist/cjs/node/index.cjs",
+  "module": "./dist/esm/node/index.mjs",
+  "types": "./dist/types/node/index.d.ts",
   "sideEffects": false,
   "files": [
     "./dist/esm",
@@ -20,7 +20,7 @@
     "build:wasm": "cd ./src/wasm && rimraf pkg && wasm-pack build --target web --release && cd ../.. && node patch.js ed25519_dalek_wasm",
     "build:node": "rimraf dist && rollup -c && rsync -a ./src/wasm ./dist --exclude=target --exclude=pkg",
     "build": "npm run build:wasm && npm run build:node",
-    "test": "node ./dist/test/src/node/index.test.mjs",
+    "test": "node ./dist/test/node/index.test.mjs",
     "prepare": "npm run build"
   },
   "devDependencies": {
@@ -36,9 +36,9 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/types/src/node/index.d.ts",
-      "import": "./dist/esm/src/node/index.mjs",
-      "require": "./dist/cjs/src/node/index.cjs"
+      "types": "./dist/types/node/index.d.ts",
+      "import": "./dist/esm/node/index.mjs",
+      "require": "./dist/cjs/node/index.cjs"
     }
   },
   "keywords": [
