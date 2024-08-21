@@ -2,7 +2,7 @@ FROM rust:1.80.1
 
 WORKDIR /app
 
-RUN sudo apt install rsync
+RUN apt install rsync
 
 RUN cargo install wasm-pack
 
@@ -17,6 +17,5 @@ ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 RUN npm config set cache /tmp --global
 
 RUN chmod -R 777 /usr/local/cargo
-RUN chmod -R 777 /root
 
 CMD npm ci
