@@ -16,7 +16,7 @@ npm i @hazae41/ed25519-dalek.wasm
 ## Usage
 
 ```typescript
-import { Ed25519DalekWasm, Ed25519Keypair } from "@hazae41/berith";
+import { Ed25519DalekWasm, Ed25519Keypair } from "@hazae41/ed25519-dalek.wasm";
 
 // Wait for WASM to load
 await Ed25519DalekWasm.initBundled();

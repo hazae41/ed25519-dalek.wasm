@@ -4,8 +4,8 @@ version = "1.0.0"
 authors = ["hazae41 <hazae41@proton.me>"]
 edition = "2021"
 
-description = "WebAssembly port of Ed25519 signatures and X25519 key exchange"
-repository = "https://github.com/hazae41/berith-wasm"
+description = "WebAssembly port of ed25519-dalek"
+repository = "https://github.com/hazae41/ed25519-dalek.wasm"
 license = "Unlicense"
 
 [lib]
