@@ -149,7 +149,6 @@ const glueJs = readFileSync(`./src/wasm/pkg/${name}.js`, "utf8")
   .replaceAll(beforeMemoryJs, afterMemoryJs)
   .replaceAll(`free()`, `[Symbol.dispose]()`)
   .replaceAll(`module_or_path = new URL('${name}_bg.wasm', import.meta.url);`, `throw new Error();`)
-  .replaceAll(`module_or_path = fetch(module_or_path);`, `throw new Error();`)
 
 const glueTs = readFileSync(`./src/wasm/pkg/${name}.d.ts`, "utf8")
   .replaceAll(beforeMemoryTs, afterMemoryTs)
