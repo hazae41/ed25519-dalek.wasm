@@ -2,6 +2,8 @@ FROM rust:1.80.1
 
 WORKDIR /app
 
+RUN sudo apt install rsync
+
 RUN cargo install wasm-pack
 
 ENV NODE_VERSION=22.6.0
