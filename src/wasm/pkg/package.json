@@ -2,7 +2,7 @@
   "name": "ed25519-dalek-wasm",
   "type": "module",
   "collaborators": [
-    "hazae41 <me@hazae41.me>"
+    "hazae41 <4405263+hazae41@users.noreply.github.com>"
   ],
   "description": "WebAssembly port of ed25519-dalek",
   "version": "1.0.0",
