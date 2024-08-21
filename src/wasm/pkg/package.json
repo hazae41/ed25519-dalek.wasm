@@ -2,14 +2,14 @@
   "name": "ed25519-dalek-wasm",
   "type": "module",
   "collaborators": [
-    "hazae41 <hazae41@proton.me>"
+    "hazae41 <me@hazae41.me>"
   ],
-  "description": "WebAssembly port of Ed25519 signatures and X25519 key exchange",
+  "description": "WebAssembly port of ed25519-dalek",
   "version": "1.0.0",
   "license": "Unlicense",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hazae41/berith-wasm"
+    "url": "https://github.com/hazae41/ed25519-dalek.wasm"
   },
   "files": [
     "ed25519_dalek_wasm_bg.wasm",
