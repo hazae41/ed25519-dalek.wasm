@@ -2,6 +2,7 @@ FROM rust:1.80.1
 
 WORKDIR /app
 
+RUN apt update
 RUN apt install rsync
 
 RUN cargo install wasm-pack
