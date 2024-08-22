@@ -12,5 +12,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: "npm ci"
-    - run: "npm diff --diff=@hazae41/ed25519-dalek.wasm@${{github.ref_name}} --diff=."
-    - run: "[[ -z $(npm diff --diff=@hazae41/ed25519-dalek.wasm@${{github.ref_name}} --diff=.) ]]"
+    - run: "npm diff --diff=@hazae41/ed25519.wasm@${{github.ref_name}} --diff=."
+    - run: "[[ -z $(npm diff --diff=@hazae41/ed25519.wasm@${{github.ref_name}} --diff=.) ]]"

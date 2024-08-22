@@ -60,5 +60,8 @@
     "rust",
     "unit-tested",
     "deno"
-  ]
+  ],
+  "dependencies": {
+    "@hazae41/memory.wasm": "^1.0.4"
+  }
 }

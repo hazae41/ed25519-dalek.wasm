@@ -5,7 +5,7 @@ authors = ["hazae41 <4405263+hazae41@users.noreply.github.com>"]
 edition = "2021"
 
 description = "WebAssembly port of ed25519-dalek"
-repository = "https://github.com/hazae41/ed25519-dalek.wasm"
+repository = "https://github.com/hazae41/ed25519.wasm"
 license = "Unlicense"
 
 [lib]
@@ -21,3 +21,4 @@ wasm-bindgen = { version = "0.2.93", default-features = false }
 ed25519-dalek = { version = "2.1.1", default-features = false, features = ["rand_core"] }
 rand_core = { version = "0.6.4", default-features = false, features = ["getrandom"] }
 getrandom = { version = "0.2.15", default-features = false, features = ["js"] }
+memory_wasm = { path = "../../node_modules/@hazae41/memory.wasm/dist/wasm"}

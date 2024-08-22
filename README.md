@@ -1,12 +1,12 @@
-# ed25519-dalek.wasm
+# ed25519.wasm
 
 WebAssembly port of ed25519-dalek
 
 ```bash
-npm i @hazae41/ed25519-dalek.wasm
+npm i @hazae41/ed25519.wasm
 ```
 
-[**Node Package 📦**](https://www.npmjs.com/package/@hazae41/ed25519-dalek.wasm)
+[**Node Package 📦**](https://www.npmjs.com/package/@hazae41/ed25519.wasm)
 
 ## Features
 - Reproducible building
@@ -16,10 +16,10 @@ npm i @hazae41/ed25519-dalek.wasm
 ## Usage
 
 ```typescript
-import { Ed25519DalekWasm, Ed25519Keypair } from "@hazae41/ed25519-dalek.wasm";
+import { Ed25519Wasm, Ed25519Keypair } from "@hazae41/ed25519.wasm";
 
 // Wait for WASM to load
-await Ed25519DalekWasm.initBundled();
+await Ed25519Wasm.initBundled();
 
 // Generate an identity
 using keypair = new Ed25519Keypair();

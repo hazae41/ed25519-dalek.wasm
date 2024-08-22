@@ -1,8 +1,6 @@
-extern crate alloc;
-
 use wasm_bindgen::prelude::*;
 
-use crate::Memory;
+use memory_wasm::Memory;
 
 #[wasm_bindgen]
 pub struct Ed25519Signature {

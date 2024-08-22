@@ -109,7 +109,6 @@ export interface InitOutput {
   readonly ed25519signature_from_bytes: (a: number, b: number) => void;
   readonly ed25519signature_to_bytes: (a: number) => number;
   readonly __wbg_ed25519verifyingkey_free: (a: number, b: number) => void;
-  readonly ed25519verifyingkey_new: (a: number, b: number) => void;
   readonly ed25519verifyingkey_from_bytes: (a: number, b: number) => void;
   readonly ed25519verifyingkey_to_bytes: (a: number) => number;
   readonly ed25519verifyingkey_verify: (a: number, b: number, c: number) => number;
@@ -118,9 +117,10 @@ export interface InitOutput {
   readonly memory_ptr: (a: number) => number;
   readonly memory_len: (a: number) => number;
   readonly ed25519signingkey_random: () => number;
+  readonly ed25519verifyingkey_new: (a: number, b: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
-  readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_exn_store: (a: number) => void;
+  readonly __wbindgen_malloc: (a: number, b: number) => number;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;

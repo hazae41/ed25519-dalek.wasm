@@ -106,6 +106,7 @@ version = "1.0.0"
 dependencies = [
  "ed25519-dalek",
  "getrandom",
+ "memory_wasm",
  "rand_core",
  "wasm-bindgen",
 ]
@@ -159,6 +160,13 @@ name = "log"
 version = "0.4.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a7a70ba024b9dc04c27ea2f0c0548feb474ec5c54bba33a7f72f873a39d07b24"
+
+[[package]]
+name = "memory_wasm"
+version = "1.0.0"
+dependencies = [
+ "wasm-bindgen",
+]
 
 [[package]]
 name = "once_cell"

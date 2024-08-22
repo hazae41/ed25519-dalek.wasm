@@ -1,8 +1,8 @@
-extern crate alloc;
-
 use wasm_bindgen::prelude::*;
 
-use crate::{ed25519::signature::Ed25519Signature, Memory};
+use crate::mods::signature::Ed25519Signature;
+
+use memory_wasm::Memory;
 
 #[wasm_bindgen]
 pub struct Ed25519VerifyingKey {
