@@ -80,7 +80,7 @@ function passArray8ToWasm0(arg, malloc) {
     return ptr;
 }
 
-const Ed25519SignatureFinalization = (typeof FinalizationRegistry === 'undefined')
+const Ed25519SignatureFinalization = true
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_ed25519signature_free(ptr >>> 0, 1));
 /**
@@ -156,7 +156,7 @@ export class Ed25519Signature {
     }
 }
 
-const Ed25519SigningKeyFinalization = (typeof FinalizationRegistry === 'undefined')
+const Ed25519SigningKeyFinalization = true
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_ed25519signingkey_free(ptr >>> 0, 1));
 /**
@@ -242,7 +242,7 @@ export class Ed25519SigningKey {
     }
 }
 
-const Ed25519VerifyingKeyFinalization = (typeof FinalizationRegistry === 'undefined')
+const Ed25519VerifyingKeyFinalization = true
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_ed25519verifyingkey_free(ptr >>> 0, 1));
 /**
@@ -329,9 +329,9 @@ export class Ed25519VerifyingKey {
     }
 }
 
-const MemoryFinalization = (typeof FinalizationRegistry === 'undefined')
+const MemoryFinalization = true
     ? { register: () => {}, unregister: () => {} }
-    : { register: () => {}, unregister: () => {} };
+    : new FinalizationRegistry(ptr => wasm.__wbg_memory_free(ptr >>> 0, 1));
 /**
 */
 export class Memory {
