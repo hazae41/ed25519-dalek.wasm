@@ -1,6 +1,6 @@
 # ed25519.wasm
 
-WebAssembly port of ed25519-dalek
+WebAssembly port of Ed25519
 
 ```bash
 npm i @hazae41/ed25519.wasm
@@ -12,6 +12,9 @@ npm i @hazae41/ed25519.wasm
 - Reproducible building
 - Pre-bundled and streamed
 - Zero-copy memory slices
+
+## Modules
+- ed25519-dalek
 
 ## Usage
 

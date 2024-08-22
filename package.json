@@ -2,7 +2,7 @@
   "type": "module",
   "name": "@hazae41/ed25519.wasm",
   "version": "1.0.2",
-  "description": "WebAssembly port of ed25519-dalek",
+  "description": "WebAssembly port of Ed25519",
   "homepage": "https://github.com/hazae41/ed25519.wasm",
   "repository": "github:hazae41/ed25519.wasm",
   "author": "hazae41",
