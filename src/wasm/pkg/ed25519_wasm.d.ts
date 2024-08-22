@@ -98,6 +98,11 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly __wbg_ed25519verifyingkey_free: (a: number, b: number) => void;
+  readonly ed25519verifyingkey_new: (a: number, b: number) => void;
+  readonly ed25519verifyingkey_from_bytes: (a: number, b: number) => void;
+  readonly ed25519verifyingkey_to_bytes: (a: number) => number;
+  readonly ed25519verifyingkey_verify: (a: number, b: number, c: number) => number;
   readonly __wbg_ed25519signingkey_free: (a: number, b: number) => void;
   readonly ed25519signingkey_new: () => number;
   readonly ed25519signingkey_from_bytes: (a: number, b: number) => void;
@@ -108,16 +113,11 @@ export interface InitOutput {
   readonly ed25519signature_new: (a: number, b: number) => void;
   readonly ed25519signature_from_bytes: (a: number, b: number) => void;
   readonly ed25519signature_to_bytes: (a: number) => number;
-  readonly __wbg_ed25519verifyingkey_free: (a: number, b: number) => void;
-  readonly ed25519verifyingkey_from_bytes: (a: number, b: number) => void;
-  readonly ed25519verifyingkey_to_bytes: (a: number) => number;
-  readonly ed25519verifyingkey_verify: (a: number, b: number, c: number) => number;
+  readonly ed25519signingkey_random: () => number;
   readonly __wbg_memory_free: (a: number, b: number) => void;
   readonly memory_new: (a: number, b: number) => number;
   readonly memory_ptr: (a: number) => number;
   readonly memory_len: (a: number) => number;
-  readonly ed25519signingkey_random: () => number;
-  readonly ed25519verifyingkey_new: (a: number, b: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_exn_store: (a: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;

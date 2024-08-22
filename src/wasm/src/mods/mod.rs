@@ -1,3 +1,7 @@
-pub mod private_key;
-pub mod public_key;
-pub mod signature;
+mod private_key;
+mod public_key;
+mod signature;
+
+pub use private_key::*;
+pub use public_key::*;
+pub use signature::*;

@@ -1,5 +1,5 @@
 #![no_std]
 
-extern crate alloc;
+mod mods;
 
-pub mod mods;
+pub use mods::*;
