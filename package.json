@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@hazae41/ed25519.wasm",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "WebAssembly port of Ed25519",
   "homepage": "https://github.com/hazae41/ed25519.wasm",
   "repository": "github:hazae41/ed25519.wasm",
