@@ -1,5 +1,5 @@
 [package]
-name = "ed25519-dalek-wasm"
+name = "ed25519_wasm"
 version = "1.0.0"
 authors = ["hazae41 <4405263+hazae41@users.noreply.github.com>"]
 edition = "2021"

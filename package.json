@@ -1,10 +1,10 @@
 {
   "type": "module",
-  "name": "@hazae41/ed25519-dalek.wasm",
+  "name": "@hazae41/ed25519.wasm",
   "version": "1.0.2",
   "description": "WebAssembly port of ed25519-dalek",
-  "homepage": "https://github.com/hazae41/ed25519-dalek.wasm",
-  "repository": "github:hazae41/ed25519-dalek.wasm",
+  "homepage": "https://github.com/hazae41/ed25519.wasm",
+  "repository": "github:hazae41/ed25519.wasm",
   "author": "hazae41",
   "license": "Unlicense",
   "main": "./dist/cjs/node/index.cjs",
@@ -17,7 +17,7 @@
     "./dist/types"
   ],
   "scripts": {
-    "build:wasm": "cd ./src/wasm && rimraf pkg && wasm-pack build --target web --release && cd ../.. && node patch.js ed25519_dalek_wasm",
+    "build:wasm": "cd ./src/wasm && rimraf pkg && wasm-pack build --target web --release && cd ../.. && node patch.js ed25519_wasm",
     "build:node": "rimraf dist && rollup -c && rsync -a ./src/wasm ./dist --exclude=target --exclude=pkg",
     "build": "npm run build:wasm && npm run build:node",
     "test": "node ./dist/test/node/index.test.mjs",
