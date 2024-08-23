@@ -62,6 +62,6 @@
     "deno"
   ],
   "dependencies": {
-    "@hazae41/memory.wasm": "^1.0.7"
+    "@hazae41/memory.wasm": "^1.0.8"
   }
 }
