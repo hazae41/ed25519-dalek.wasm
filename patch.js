@@ -68,6 +68,8 @@ const afterMemoryJs = `export class Memory {
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
+        this.__wbg_ptr0 = 0;
+        this.__wbg_len0 = 0;
         MemoryFinalization.unregister(this);
         return ptr;
     }
@@ -84,6 +86,8 @@ const afterMemoryJs = `export class Memory {
         const len0 = WASM_VECTOR_LEN;
         const ret = wasm.memory_new(ptr0, len0);
         this.__wbg_ptr = ret >>> 0;
+        this.__wbg_ptr0 = ptr0 >>> 0;
+        this.__wbg_len0 = len0 >>> 0;
         MemoryFinalization.register(this, this.__wbg_ptr, this);
         return this;
     }
@@ -102,10 +106,22 @@ const afterMemoryJs = `export class Memory {
         return ret >>> 0;
     }
     /**
+    * @returns {number}
+    */
+    get ptr0() {
+        return this.__wbg_ptr0 ??= this.ptr();
+    }
+    /**
+    * @returns {number}
+    */
+    get len0() {
+        return this.__wbg_len0 ??= this.len();
+    }
+    /**
     * @returns {Uint8Array}
     */
     get bytes() {
-        return getUint8ArrayMemory0().subarray(this.ptr(), this.ptr() + this.len());
+        return getUint8ArrayMemory0().subarray(this.ptr0, this.ptr0 + this.len0);
     }
 }`
 
@@ -149,6 +165,9 @@ const glueJs = readFileSync(`./src/wasm/pkg/${name}.js`, "utf8")
   .replaceAll(beforeMemoryJs, afterMemoryJs)
   .replaceAll(`free()`, `[Symbol.dispose]()`)
   .replaceAll(`(typeof FinalizationRegistry === 'undefined')`, `true`)
+  .replaceAll(`.register(this, this.__wbg_ptr, this)`, ``)
+  .replaceAll(`.register(obj, obj.__wbg_ptr, obj)`, ``)
+  .replaceAll(`.unregister(this)`, ``)
   .replaceAll(`module_or_path = new URL('${name}_bg.wasm', import.meta.url);`, `throw new Error();`)
 
 const glueTs = readFileSync(`./src/wasm/pkg/${name}.d.ts`, "utf8")

@@ -91,14 +91,14 @@ export class Ed25519Signature {
         ptr = ptr >>> 0;
         const obj = Object.create(Ed25519Signature.prototype);
         obj.__wbg_ptr = ptr;
-        Ed25519SignatureFinalization.register(obj, obj.__wbg_ptr, obj);
+        Ed25519SignatureFinalization;
         return obj;
     }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        Ed25519SignatureFinalization.unregister(this);
+        Ed25519SignatureFinalization;
         return ptr;
     }
 
@@ -121,7 +121,7 @@ export class Ed25519Signature {
                 throw takeObject(r1);
             }
             this.__wbg_ptr = r0 >>> 0;
-            Ed25519SignatureFinalization.register(this, this.__wbg_ptr, this);
+            Ed25519SignatureFinalization;
             return this;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
@@ -167,14 +167,14 @@ export class Ed25519SigningKey {
         ptr = ptr >>> 0;
         const obj = Object.create(Ed25519SigningKey.prototype);
         obj.__wbg_ptr = ptr;
-        Ed25519SigningKeyFinalization.register(obj, obj.__wbg_ptr, obj);
+        Ed25519SigningKeyFinalization;
         return obj;
     }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        Ed25519SigningKeyFinalization.unregister(this);
+        Ed25519SigningKeyFinalization;
         return ptr;
     }
 
@@ -187,7 +187,7 @@ export class Ed25519SigningKey {
     constructor() {
         const ret = wasm.ed25519signingkey_new();
         this.__wbg_ptr = ret >>> 0;
-        Ed25519SigningKeyFinalization.register(this, this.__wbg_ptr, this);
+        Ed25519SigningKeyFinalization;
         return this;
     }
     /**
@@ -253,14 +253,14 @@ export class Ed25519VerifyingKey {
         ptr = ptr >>> 0;
         const obj = Object.create(Ed25519VerifyingKey.prototype);
         obj.__wbg_ptr = ptr;
-        Ed25519VerifyingKeyFinalization.register(obj, obj.__wbg_ptr, obj);
+        Ed25519VerifyingKeyFinalization;
         return obj;
     }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        Ed25519VerifyingKeyFinalization.unregister(this);
+        Ed25519VerifyingKeyFinalization;
         return ptr;
     }
 
@@ -283,7 +283,7 @@ export class Ed25519VerifyingKey {
                 throw takeObject(r1);
             }
             this.__wbg_ptr = r0 >>> 0;
-            Ed25519VerifyingKeyFinalization.register(this, this.__wbg_ptr, this);
+            Ed25519VerifyingKeyFinalization;
             return this;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
@@ -340,14 +340,16 @@ export class Memory {
         ptr = ptr >>> 0;
         const obj = Object.create(Memory.prototype);
         obj.__wbg_ptr = ptr;
-        MemoryFinalization.register(obj, obj.__wbg_ptr, obj);
+        MemoryFinalization;
         return obj;
     }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        MemoryFinalization.unregister(this);
+        this.__wbg_ptr0 = 0;
+        this.__wbg_len0 = 0;
+        MemoryFinalization;
         return ptr;
     }
 
@@ -363,7 +365,9 @@ export class Memory {
         const len0 = WASM_VECTOR_LEN;
         const ret = wasm.memory_new(ptr0, len0);
         this.__wbg_ptr = ret >>> 0;
-        MemoryFinalization.register(this, this.__wbg_ptr, this);
+        this.__wbg_ptr0 = ptr0 >>> 0;
+        this.__wbg_len0 = len0 >>> 0;
+        MemoryFinalization;
         return this;
     }
     /**
@@ -381,10 +385,22 @@ export class Memory {
         return ret >>> 0;
     }
     /**
+    * @returns {number}
+    */
+    get ptr0() {
+        return this.__wbg_ptr0 ??= this.ptr();
+    }
+    /**
+    * @returns {number}
+    */
+    get len0() {
+        return this.__wbg_len0 ??= this.len();
+    }
+    /**
     * @returns {Uint8Array}
     */
     get bytes() {
-        return getUint8ArrayMemory0().subarray(this.ptr(), this.ptr() + this.len());
+        return getUint8ArrayMemory0().subarray(this.ptr0, this.ptr0 + this.len0);
     }
 }
 
