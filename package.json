@@ -61,7 +61,7 @@
     "unit-tested",
     "deno"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "@hazae41/memory.wasm": "^1.0.8"
   }
 }
