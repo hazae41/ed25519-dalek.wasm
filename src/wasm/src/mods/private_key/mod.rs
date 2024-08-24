@@ -38,7 +38,7 @@ impl Ed25519SigningKey {
     }
 
     #[wasm_bindgen]
-    pub fn public(&self) -> Ed25519VerifyingKey {
+    pub fn verifying_key(&self) -> Ed25519VerifyingKey {
         let inner = self.inner.verifying_key();
 
         Ed25519VerifyingKey { inner }

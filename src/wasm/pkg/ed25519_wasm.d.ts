@@ -41,7 +41,7 @@ export class Ed25519SigningKey {
 /**
 * @returns {Ed25519VerifyingKey}
 */
-  public(): Ed25519VerifyingKey;
+  verifying_key(): Ed25519VerifyingKey;
 /**
 * @param {Memory} bytes
 * @returns {Ed25519Signature}
@@ -107,7 +107,7 @@ export interface InitOutput {
   readonly ed25519signingkey_new: () => number;
   readonly ed25519signingkey_from_bytes: (a: number, b: number) => void;
   readonly ed25519signingkey_to_bytes: (a: number) => number;
-  readonly ed25519signingkey_public: (a: number) => number;
+  readonly ed25519signingkey_verifying_key: (a: number) => number;
   readonly ed25519signingkey_sign: (a: number, b: number) => number;
   readonly __wbg_ed25519signature_free: (a: number, b: number) => void;
   readonly ed25519signature_new: (a: number, b: number) => void;

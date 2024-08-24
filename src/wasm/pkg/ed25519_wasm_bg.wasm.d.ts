@@ -10,7 +10,7 @@ export function __wbg_ed25519signingkey_free(a: number, b: number): void;
 export function ed25519signingkey_new(): number;
 export function ed25519signingkey_from_bytes(a: number, b: number): void;
 export function ed25519signingkey_to_bytes(a: number): number;
-export function ed25519signingkey_public(a: number): number;
+export function ed25519signingkey_verifying_key(a: number): number;
 export function ed25519signingkey_sign(a: number, b: number): number;
 export function __wbg_ed25519signature_free(a: number, b: number): void;
 export function ed25519signature_new(a: number, b: number): void;

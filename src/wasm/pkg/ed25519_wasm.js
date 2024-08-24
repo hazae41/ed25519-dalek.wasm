@@ -227,8 +227,8 @@ export class Ed25519SigningKey {
     /**
     * @returns {Ed25519VerifyingKey}
     */
-    public() {
-        const ret = wasm.ed25519signingkey_public(this.__wbg_ptr);
+    verifying_key() {
+        const ret = wasm.ed25519signingkey_verifying_key(this.__wbg_ptr);
         return Ed25519VerifyingKey.__wrap(ret);
     }
     /**

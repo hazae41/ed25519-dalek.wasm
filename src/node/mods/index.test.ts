@@ -33,7 +33,7 @@ test("Ed25519", async () => {
   const mhello = new Memory(hello)
 
   const keypair = new Ed25519SigningKey()
-  const identity = keypair.public()
+  const identity = keypair.verifying_key()
 
   assertEd25519Keypair(keypair)
   assertEd25519PublicKey(identity)
