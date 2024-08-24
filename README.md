@@ -16,6 +16,9 @@ npm i @hazae41/ed25519.wasm
 ## Modules
 - ed25519-dalek
 
+## Algorithms
+- Ed25519
+
 ## Usage
 
 ```typescript
