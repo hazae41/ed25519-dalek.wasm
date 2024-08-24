@@ -1,7 +1,7 @@
-mod private_key;
-mod public_key;
 mod signature;
+mod signing_key;
+mod verifying_key;
 
-pub use private_key::*;
-pub use public_key::*;
 pub use signature::*;
+pub use signing_key::*;
+pub use verifying_key::*;

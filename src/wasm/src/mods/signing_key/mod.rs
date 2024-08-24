@@ -1,7 +1,7 @@
 use wasm_bindgen::prelude::*;
 
-use crate::mods::public_key::Ed25519VerifyingKey;
-use crate::mods::signature::Ed25519Signature;
+use crate::Ed25519Signature;
+use crate::Ed25519VerifyingKey;
 
 use memory_wasm::Memory;
 
