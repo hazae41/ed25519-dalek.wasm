@@ -31,6 +31,11 @@ impl Ed25519VerifyingKey {
     }
 
     #[wasm_bindgen]
+    pub fn is_weak(&self) -> bool {
+        self.inner.is_weak()
+    }
+
+    #[wasm_bindgen]
     pub fn to_bytes(&self) -> Memory {
         Memory::new(self.inner.to_bytes().to_vec())
     }

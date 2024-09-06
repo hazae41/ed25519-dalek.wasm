@@ -26,4 +26,14 @@ impl Ed25519Signature {
     pub fn to_bytes(&self) -> Memory {
         Memory::new(self.inner.to_bytes().to_vec())
     }
+
+    #[wasm_bindgen]
+    pub fn r_bytes(&self) -> Memory {
+        Memory::new(self.inner.r_bytes().to_vec())
+    }
+
+    #[wasm_bindgen]
+    pub fn s_bytes(&self) -> Memory {
+        Memory::new(self.inner.s_bytes().to_vec())
+    }
 }
