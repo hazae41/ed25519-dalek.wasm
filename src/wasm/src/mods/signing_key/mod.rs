@@ -76,4 +76,16 @@ impl Ed25519SigningKey {
 
         Ed25519Signature { inner }
     }
+
+    #[wasm_bindgen]
+    pub fn verify(&self, bytes: &Memory, signature: &Ed25519Signature) -> bool {
+        self.inner.verify(&bytes.inner, &signature.inner).is_ok()
+    }
+
+    #[wasm_bindgen]
+    pub fn verify_strict(&self, bytes: &Memory, signature: &Ed25519Signature) -> bool {
+        self.inner
+            .verify_strict(&bytes.inner, &signature.inner)
+            .is_ok()
+    }
 }
