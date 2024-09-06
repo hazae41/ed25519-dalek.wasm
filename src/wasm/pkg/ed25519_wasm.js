@@ -1,5 +1,25 @@
 let wasm;
 
+const heap = new Array(128).fill(undefined);
+
+heap.push(undefined, null, true, false);
+
+function getObject(idx) { return heap[idx]; }
+
+let heap_next = heap.length;
+
+function dropObject(idx) {
+    if (idx < 132) return;
+    heap[idx] = heap_next;
+    heap_next = idx;
+}
+
+function takeObject(idx) {
+    const ret = getObject(idx);
+    dropObject(idx);
+    return ret;
+}
+
 const cachedTextDecoder = (typeof TextDecoder !== 'undefined' ? new TextDecoder('utf-8', { ignoreBOM: true, fatal: true }) : { decode: () => { throw Error('TextDecoder not available') } } );
 
 if (typeof TextDecoder !== 'undefined') { cachedTextDecoder.decode(); };
@@ -18,12 +38,6 @@ function getStringFromWasm0(ptr, len) {
     return cachedTextDecoder.decode(getUint8ArrayMemory0().subarray(ptr, ptr + len));
 }
 
-const heap = new Array(128).fill(undefined);
-
-heap.push(undefined, null, true, false);
-
-let heap_next = heap.length;
-
 function addHeapObject(obj) {
     if (heap_next === heap.length) heap.push(heap.length + 1);
     const idx = heap_next;
@@ -31,20 +45,6 @@ function addHeapObject(obj) {
 
     heap[idx] = obj;
     return idx;
-}
-
-function getObject(idx) { return heap[idx]; }
-
-function dropObject(idx) {
-    if (idx < 132) return;
-    heap[idx] = heap_next;
-    heap_next = idx;
-}
-
-function takeObject(idx) {
-    const ret = getObject(idx);
-    dropObject(idx);
-    return ret;
 }
 
 function _assertClass(instance, klass) {
@@ -154,6 +154,20 @@ export class Ed25519Signature {
         const ret = wasm.ed25519signature_to_bytes(this.__wbg_ptr);
         return Memory.__wrap(ret);
     }
+    /**
+    * @returns {Memory}
+    */
+    r_bytes() {
+        const ret = wasm.ed25519signature_r_bytes(this.__wbg_ptr);
+        return Memory.__wrap(ret);
+    }
+    /**
+    * @returns {Memory}
+    */
+    s_bytes() {
+        const ret = wasm.ed25519signature_s_bytes(this.__wbg_ptr);
+        return Memory.__wrap(ret);
+    }
 }
 
 const Ed25519SigningKeyFinalization = true
@@ -218,10 +232,37 @@ export class Ed25519SigningKey {
         }
     }
     /**
+    * @param {Memory} bytes
+    * @returns {Ed25519SigningKey}
+    */
+    static from_keypair_bytes(bytes) {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            _assertClass(bytes, Memory);
+            wasm.ed25519signingkey_from_keypair_bytes(retptr, bytes.__wbg_ptr);
+            var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true);
+            var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true);
+            var r2 = getDataViewMemory0().getInt32(retptr + 4 * 2, true);
+            if (r2) {
+                throw takeObject(r1);
+            }
+            return Ed25519SigningKey.__wrap(r0);
+        } finally {
+            wasm.__wbindgen_add_to_stack_pointer(16);
+        }
+    }
+    /**
     * @returns {Memory}
     */
     to_bytes() {
         const ret = wasm.ed25519signingkey_to_bytes(this.__wbg_ptr);
+        return Memory.__wrap(ret);
+    }
+    /**
+    * @returns {Memory}
+    */
+    to_keypair_bytes() {
+        const ret = wasm.ed25519signingkey_to_keypair_bytes(this.__wbg_ptr);
         return Memory.__wrap(ret);
     }
     /**
@@ -239,6 +280,28 @@ export class Ed25519SigningKey {
         _assertClass(bytes, Memory);
         const ret = wasm.ed25519signingkey_sign(this.__wbg_ptr, bytes.__wbg_ptr);
         return Ed25519Signature.__wrap(ret);
+    }
+    /**
+    * @param {Memory} bytes
+    * @param {Ed25519Signature} signature
+    * @returns {boolean}
+    */
+    verify(bytes, signature) {
+        _assertClass(bytes, Memory);
+        _assertClass(signature, Ed25519Signature);
+        const ret = wasm.ed25519signingkey_verify(this.__wbg_ptr, bytes.__wbg_ptr, signature.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+    * @param {Memory} bytes
+    * @param {Ed25519Signature} signature
+    * @returns {boolean}
+    */
+    verify_strict(bytes, signature) {
+        _assertClass(bytes, Memory);
+        _assertClass(signature, Ed25519Signature);
+        const ret = wasm.ed25519signingkey_verify_strict(this.__wbg_ptr, bytes.__wbg_ptr, signature.__wbg_ptr);
+        return ret !== 0;
     }
 }
 
@@ -310,6 +373,13 @@ export class Ed25519VerifyingKey {
         }
     }
     /**
+    * @returns {boolean}
+    */
+    is_weak() {
+        const ret = wasm.ed25519verifyingkey_is_weak(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
     * @returns {Memory}
     */
     to_bytes() {
@@ -325,6 +395,17 @@ export class Ed25519VerifyingKey {
         _assertClass(bytes, Memory);
         _assertClass(signature, Ed25519Signature);
         const ret = wasm.ed25519verifyingkey_verify(this.__wbg_ptr, bytes.__wbg_ptr, signature.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+    * @param {Memory} bytes
+    * @param {Ed25519Signature} signature
+    * @returns {boolean}
+    */
+    verify_strict(bytes, signature) {
+        _assertClass(bytes, Memory);
+        _assertClass(signature, Ed25519Signature);
+        const ret = wasm.ed25519verifyingkey_verify_strict(this.__wbg_ptr, bytes.__wbg_ptr, signature.__wbg_ptr);
         return ret !== 0;
     }
 }
@@ -438,12 +519,12 @@ async function __wbg_load(module, imports) {
 function __wbg_get_imports() {
     const imports = {};
     imports.wbg = {};
+    imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
+        takeObject(arg0);
+    };
     imports.wbg.__wbindgen_error_new = function(arg0, arg1) {
         const ret = new Error(getStringFromWasm0(arg0, arg1));
         return addHeapObject(ret);
-    };
-    imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
-        takeObject(arg0);
     };
     imports.wbg.__wbg_crypto_1d1f22824a6a080c = function(arg0) {
         const ret = getObject(arg0).crypto;
