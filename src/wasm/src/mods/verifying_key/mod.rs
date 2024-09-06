@@ -18,8 +18,13 @@ impl Ed25519VerifyingKey {
 
     #[wasm_bindgen]
     pub fn from_bytes(bytes: &Memory) -> Result<Ed25519VerifyingKey, JsError> {
-        let bytes: &[u8; 32] = bytes.inner.as_slice().try_into()?;
-        let rpublic = ed25519_dalek::VerifyingKey::from_bytes(bytes);
+        let sized: &[u8; 32] = bytes
+            .inner
+            .as_slice()
+            .try_into()
+            .map_err(|_| JsError::new("Ed25519VerifyingKey::from_bytes"))?;
+
+        let rpublic = ed25519_dalek::VerifyingKey::from_bytes(sized);
         let inner = rpublic.map_err(|_| JsError::new("Ed25519VerifyingKey::from_bytes"))?;
 
         Ok(Self { inner })
@@ -35,5 +40,12 @@ impl Ed25519VerifyingKey {
         use ed25519_dalek::Verifier;
 
         self.inner.verify(&bytes.inner, &signature.inner).is_ok()
+    }
+
+    #[wasm_bindgen]
+    pub fn verify_strict(&self, bytes: &Memory, signature: &Ed25519Signature) -> bool {
+        self.inner
+            .verify_strict(&bytes.inner, &signature.inner)
+            .is_ok()
     }
 }

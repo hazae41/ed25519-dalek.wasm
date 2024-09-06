@@ -26,7 +26,12 @@ impl Ed25519SigningKey {
 
     #[wasm_bindgen]
     pub fn from_bytes(bytes: &Memory) -> Result<Ed25519SigningKey, JsError> {
-        let sized: &[u8; 32] = bytes.inner.as_slice().try_into()?;
+        let sized: &[u8; 32] = bytes
+            .inner
+            .as_slice()
+            .try_into()
+            .map_err(|_| JsError::new("Ed25519SigningKey::from_bytes"))?;
+
         let inner = ed25519_dalek::SigningKey::from_bytes(sized);
 
         Ok(Self { inner })
@@ -35,6 +40,11 @@ impl Ed25519SigningKey {
     #[wasm_bindgen]
     pub fn to_bytes(&self) -> Memory {
         Memory::new(self.inner.to_bytes().to_vec())
+    }
+
+    #[wasm_bindgen]
+    pub fn to_keypair_bytes(&self) -> Memory {
+        Memory::new(self.inner.to_keypair_bytes().to_vec())
     }
 
     #[wasm_bindgen]
